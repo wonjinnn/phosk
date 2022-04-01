@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.teamproject.phosk.branch.login.dao.BranchLoginDAO">
+	<select id="branchLoginSelect" parameterType="branchLogin" resultType="branchLogin">
+		select * from phosk_oner where oner_id = #{oner_id} and oner_pwd = #{oner_pwd}
+	</select>
+	<select id="branchChoiceBranch" parameterType="String" resultType="branchInfo">
+		select ph.branch_num , po.oner_id , po.oner_pwd , po.oner_phone , po.oner_email , ph.branch_name,
+		ph.branch_phone, ph.branch_leadername, ph.branch_addr, ph.branch_detail, ph.branch_type, ph.branch_opentime, ph.branch_closetime,
+		ph.branch_foundationdate, ph.branch_regdate, ph.branch_image
+		from phosk_branch ph 
+		inner join phosk_oner po 
+		on (ph.oner_id = po.oner_id) 
+		where ph.oner_id = #{oner_id}
+	</select>
+	
+</mapper>
